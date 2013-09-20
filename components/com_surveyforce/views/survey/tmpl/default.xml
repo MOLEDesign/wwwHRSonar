@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Standard Survey Layout">
+		<message>
+			<![CDATA[Use this layout to create menu item for some survey.]]>
+		</message>
+	</layout>
+	<state>
+		<name>Standard Survey Layout</name>
+		<description>Use this layout to create menu item for some survey.</description>
+
+		<params>
+			<param name="surv_id" value="value" type="sql" query="(SELECT '- Select survey -' AS `text`, '- Select survey -' AS `surv_id`, '0' AS `value` FROM `#__users` LIMIT 0,1) UNION (SELECT `sf_name` AS `text`, `sf_name` AS `surv_id`, `id` AS `value` FROM `#__survey_force_survs` WHERE `id` > 0)" default="0" label="Survey" description="Select a survey that will be assigned to this menu item" />
+		</params>
+	</state>
+</metadata>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Standard Survey Category Layout">
+		<message>
+			<![CDATA[Use this layout to create menu item for a survy category.]]>
+		</message>
+	</layout>
+	<state>
+		<name>Standard Survey Category Layout</name>
+		<description>Use this layout to create menu item for a survey category.</description>
+
+		<params>
+			<param name="cat_id" value="value" type="sql" query="(SELECT '- Select category -' AS `text`, '- Select category -' AS `cat_id`, '0' AS `value` FROM `#__users` LIMIT 0,1) UNION (SELECT `sf_catname` AS `text`, `sf_catname` AS `cat_id`, `id` AS `value` FROM `#__survey_force_cats`)" default="0" label="Category" description="Select a survey category that will be assigned to this menu item" />
+		</params>
+	</state>
+</metadata>

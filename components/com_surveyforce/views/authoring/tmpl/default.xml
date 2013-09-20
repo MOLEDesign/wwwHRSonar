@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Standard FE Authoring Layout">
+		<message>
+			<![CDATA[Use this layout to create menu item for FE Authoring.]]>
+		</message>
+	</layout>
+	<state>
+		<name>Standard FE Authoring Layout</name>
+		<description>Use this layout to create menu item for FE Authoring.</description>
+	</state>
+</metadata>

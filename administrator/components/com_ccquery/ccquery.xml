@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="component" version="1.5.0">
+    	<name>ccquery</name>
+	<creationDate>2009-03-29</creationDate>
+	<author>codeclassic.org Project</author>
+	<authorEmail>warrier@codeclassic.org</authorEmail>
+	<authorUrl>http://www.codeclassic.org</authorUrl>
+	<copyright>Copyright codeclassic.org, All rights reserved 2008-2009.</copyright>
+	<license>GNU/GPL</license>
+	<version>0.1.0</version>
+	<description>ccQuery - Database Explorer</description>
+	<installfile/>
+	<uninstallfile/> 
+    <!-- administration part -->
+    <administration>
+	<menu view="config">ccQuery</menu>
+	<files folder="admin">
+		<filename>admin.ccquery.php</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>assets/ccquery.css</filename>
+		<filename>assets/images/48-codeclassic.png</filename>
+		<filename>assets/images/bullet_key.png</filename>
+		<filename>assets/images/database.png</filename>
+		<filename>assets/images/delete.png</filename>
+		<filename>assets/images/edit.png</filename>
+		<filename>assets/images/logo.png</filename>
+		<filename>assets/images/oval-gray-left.gif</filename>
+		<filename>assets/images/oval-gray-right.gif</filename>
+		<filename>assets/images/table.png</filename>
+		<filename>assets/images/tick.png</filename>
+		<filename>helpers/DataGrid.php</filename>
+		<filename>models/browser.php</filename>
+		<filename>models/editrow.php</filename>
+		<filename>models/query.php</filename>
+		<filename>models/structure.php</filename>
+		<filename>models/index.html</filename>
+		<filename>views/index.html</filename>
+		<filename>views/about/index.html</filename>
+		<filename>views/about/view.html.php</filename>
+		<filename>views/about/tmpl/default.php</filename>
+		<filename>views/about/tmpl/index.html</filename>
+		<filename>views/browser/index.html</filename>
+		<filename>views/browser/view.html.php</filename>
+		<filename>views/browser/tmpl/default.php</filename>
+		<filename>views/browser/tmpl/index.html</filename>
+		<filename>views/editrow/index.html</filename>
+		<filename>views/editrow/view.html.php</filename>
+		<filename>views/editrow/tmpl/default.php</filename>
+		<filename>views/editrow/tmpl/index.html</filename>
+		<filename>views/general/index.html</filename>
+		<filename>views/general/view.html.php</filename>
+		<filename>views/general/tmpl/default.php</filename>
+		<filename>views/general/tmpl/index.html</filename>
+		<filename>views/query/index.html</filename>
+		<filename>views/query/view.html.php</filename>
+		<filename>views/query/tmpl/default.php</filename>
+		<filename>views/query/tmpl/index.html</filename>
+		<filename>views/structure/index.html</filename>
+		<filename>views/structure/view.html.php</filename>
+		<filename>views/structure/tmpl/default.php</filename>
+		<filename>views/structure/tmpl/index.html</filename>
+	</files>
+        <languages>
+            <language tag="en-GB">en-GB.com_ccquery.ini</language>
+        </languages>
+
+    </administration>
+
+    <params>
+
+    </params>
+
+</install>

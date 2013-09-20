@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>SurveyForce</name>	
+	<author>JoomPlace Team</author>
+	<creationDate>August 2011</creationDate>
+	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
+	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>3.0.6</version>
+	<description>SurveyForce Deluxe component.</description>
+
+	<install>
+		<queries>
+			<query>DELETE FROM `#__components` WHERE `option` LIKE '%surveyforce%'</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_config` (
+  				`config_var` varchar(50) NOT NULL default '',
+ 				`config_value` text NOT NULL
+				);
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_user_chain` (
+				  `id` int(11) NOT NULL auto_increment,
+				  `start_id` int(11) NOT NULL default '0',
+				  `survey_id` int(11) NOT NULL default '0',
+				  `unique_id` varchar(32) default '',
+				  `invite_id` int(11) NOT NULL default '0',
+				  `sf_time` int(11) NOT NULL default '0',
+				  `sf_chain` text,
+				  PRIMARY KEY  (`id`),
+				  KEY `start_id` (`start_id`)
+				)	
+			</query>		
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_previews` (
+				`id` int(11) NOT NULL auto_increment,
+				`start_id` int(11) NOT NULL default '0',
+				`survey_id` int(11) NOT NULL default '0',
+				`unique_id` varchar(32) NOT NULL default '',
+				`preview_id` varchar( 32 ) NOT NULL default '',
+				`time` int(11) NOT NULL default '0',				
+				PRIMARY KEY  (`id`),
+				KEY `start_id` (`start_id`)
+				)
+			</query>
+			
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_templates` (
+				`id` int(11) NOT NULL auto_increment,
+				`sf_name` varchar(250) NOT NULL default '',
+				PRIMARY KEY  (`id`)
+				)
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_cats` (
+				`id` int(11) NOT NULL auto_increment,
+				`sf_catname` varchar(250) NOT NULL default '',
+				`sf_catdescr` text NOT NULL,
+				PRIMARY KEY  (`id`),
+				UNIQUE KEY `sf_catname` (`sf_catname`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_emails` (
+				`id` int(11) NOT NULL auto_increment,
+				`email_subject` varchar(100) NOT NULL default '',
+				`email_body` text NOT NULL,
+				`email_reply` varchar(100) NOT NULL default '',
+				PRIMARY KEY  (`id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_fields` (
+				`id` int(11) NOT NULL auto_increment,
+				`quest_id` int(11) NOT NULL default '0',
+				`ftext` text NOT NULL,
+				`alt_field_id` int(11) NOT NULL default '0',
+				`is_main` int(11) NOT NULL default '0',
+				`is_true` int(11) NOT NULL default '0',
+				`ordering` int(11) NOT NULL default '0',
+				PRIMARY KEY  (`id`),
+				KEY `quest_id` (`quest_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_invitations` (
+				`id` int(11) NOT NULL auto_increment,
+				`invite_num` varchar(32) NOT NULL default '',
+				`user_id` int(11) NOT NULL default '0',
+				`inv_status` tinyint(4) NOT NULL default '0',
+				PRIMARY KEY  (`id`),
+				KEY `user_id` (`user_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_iscales` (
+				`id` int(11) NOT NULL auto_increment,
+				`iscale_name` varchar(100) NOT NULL,
+				PRIMARY KEY  (`id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_iscales_fields` (
+				`id` int(11) NOT NULL auto_increment,
+				`iscale_id` int(11) NOT NULL,
+				`isf_name` varchar(50) NOT NULL,
+				`ordering` int(11) NOT NULL,
+				PRIMARY KEY  (`id`),
+				KEY `iscale_id` (`iscale_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_listusers` (
+				`id` int(11) NOT NULL auto_increment,
+				`listname` varchar(50) NOT NULL default '',
+				`survey_id` int(11) NOT NULL default '0',
+				`date_created` datetime NOT NULL default '0000-00-00 00:00:00',
+				`date_invited` datetime NOT NULL default '0000-00-00 00:00:00',
+				`date_remind` datetime NOT NULL default '0000-00-00 00:00:00',
+				`is_invited` tinyint(4) NOT NULL default '0',
+				`sf_author_id` int(11) NOT NULL,
+				PRIMARY KEY  (`id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_qtypes` (
+				`id` int(11) NOT NULL auto_increment,
+				`sf_qtype` varchar(50) NOT NULL default '',
+				PRIMARY KEY  (`id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_quests` (
+				`id` int(11) NOT NULL auto_increment,
+				`sf_survey` int(11) NOT NULL default '0',
+				`sf_qtype` int(11) NOT NULL default '0',
+				`sf_qtext` text NOT NULL,
+				`sf_impscale` int(11) NOT NULL default '0',
+				`sf_rule` int(11) NOT NULL default '0',
+				`sf_fieldtype` varchar(255) NOT NULL default '',
+				`ordering` int(11) NOT NULL default '0',
+				`sf_compulsory` TINYINT DEFAULT '1' NOT NULL,
+				`sf_section_id` int(11) DEFAULT '0' NOT NULL,
+				`published` tinyint(4) NOT NULL default '0',
+				`sf_qstyle` INT( 11 ) DEFAULT '0' NOT NULL,
+				`sf_num_options` TINYINT( 4 ) DEFAULT '0' NOT NULL,
+				PRIMARY KEY  (`id`),
+				KEY `sf_survey` (`sf_survey`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_rules` (
+				`id` int(11) NOT NULL auto_increment,
+				`quest_id` int(11) NOT NULL default '0',
+				`answer_id` int(11) NOT NULL default '0',
+				`next_quest_id` int(11) NOT NULL default '0',
+				`alt_field_id` INT(11) DEFAULT '0' NOT NULL,
+				`priority` INT(11) DEFAULT '0' NOT NULL,
+				PRIMARY KEY  (`id`),
+				KEY `quest_id` (`quest_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_scales` (
+				`id` int(11) NOT NULL auto_increment,
+				`quest_id` int(11) NOT NULL default '0',
+				`stext` varchar(250) NOT NULL default '',
+				`ordering` int(11) NOT NULL default '0',
+				PRIMARY KEY  (`id`),
+				KEY `quest_id` (`quest_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_survs` (
+				`id` int(11) NOT NULL auto_increment,
+				`sf_name` varchar(250) NOT NULL default '',
+				`sf_descr` text NOT NULL,
+				`sf_image` varchar(50) NOT NULL default '',
+				`sf_cat` int(11) NOT NULL default '0',
+				`sf_lang` int(11) NOT NULL default '0',
+				`sf_date` datetime NOT NULL default '0000-00-00 00:00:00',
+				`sf_author` int(11) NOT NULL default '0',
+				`sf_public` tinyint(4) NOT NULL default '0',
+				`sf_invite` tinyint(4) NOT NULL default '0',
+				`sf_reg` tinyint(4) NOT NULL default '0',
+				`published` tinyint(4) NOT NULL default '0',
+				`sf_fpage_type` tinyint(4) DEFAULT '0' NOT NULL ,
+				`sf_fpage_text` TEXT,
+				`sf_special` TEXT NOT NULL,
+				`sf_auto_pb` tinyint(4) DEFAULT '1' NOT NULL,
+				`sf_progressbar` TINYINT( 4 ) DEFAULT '1' NOT NULL,
+				PRIMARY KEY  (`id`),
+				KEY `sf_cat` (`sf_cat`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_user_ans_txt` (
+				`id` int(11) NOT NULL auto_increment,
+				`start_id` int(11) NOT NULL default '0',
+				`ans_txt` TEXT NOT NULL,
+				PRIMARY KEY  (`id`),
+				KEY `start_id` (`start_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_user_answers` (
+				`id` int(11) NOT NULL auto_increment,
+				`start_id` int(11) NOT NULL default '0',
+				`survey_id` int(11) NOT NULL default '0',
+				`quest_id` int(11) NOT NULL default '0',
+				`answer` int(11) NOT NULL default '0',
+				`ans_field` int(11) NOT NULL default '0',
+				`next_quest_id` int(11) NOT NULL default '0',
+				`sf_time` datetime NOT NULL default '0000-00-00 00:00:00',
+				PRIMARY KEY  (`id`),
+				KEY `start_id` (`start_id`),
+				KEY `ua_index` (`quest_id`,`survey_id`,`start_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_user_answers_imp` (
+				`id` int(11) NOT NULL auto_increment,
+				`start_id` int(11) NOT NULL,
+				`survey_id` int(11) NOT NULL,
+				`quest_id` int(11) NOT NULL,
+				`iscale_id` int(11) NOT NULL,
+				`iscalefield_id` int(11) NOT NULL,
+				`sf_imptime` datetime default '0000-00-00 00:00:00',
+				PRIMARY KEY  (`id`),
+				KEY `ua_imp_index` (`quest_id`,`survey_id`,`iscale_id`,`start_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_user_starts` (
+				`id` int(11) NOT NULL auto_increment,
+				`unique_id` varchar(32) NOT NULL default '',
+				`usertype` tinyint(4) NOT NULL default '0',
+				`user_id` int(11) NOT NULL default '0',
+				`invite_id` int(11) NOT NULL default '0',
+				`sf_time` datetime NOT NULL default '0000-00-00 00:00:00',
+				`survey_id` int(11) NOT NULL default '0',
+				`is_complete` tinyint(4) NOT NULL default '0',
+				PRIMARY KEY  (`id`),
+				KEY `survey_id` (`survey_id`)
+				) AUTO_INCREMENT=1
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_users` (
+				`id` int(11) NOT NULL auto_increment,
+				`name` varchar(50) NOT NULL default '',
+				`lastname` varchar(50) NOT NULL default '',
+				`email` varchar(100) NOT NULL default '',
+				`list_id` int(11) NOT NULL default '0',
+				`invite_id` int(11) NOT NULL default '0',
+				`is_invited` int(11) NOT NULL default '0',
+				`is_reminded` int(11) NOT NULL default '0',
+				PRIMARY KEY  (`id`),
+				KEY `list_id` (`list_id`)
+				) AUTO_INCREMENT=1
+			</query>				
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_qsections` ( 
+				`id` int(11) NOT NULL auto_increment, 
+				`sf_name` varchar(250) NOT NULL default '', 
+				`addname` tinyint(4) default '0' NOT NULL, 
+				`ordering` tinyint(4) NOT NULL default '0', 
+				`sf_survey_id` int(11) NOT NULL default '0', 
+				PRIMARY KEY (`id`)
+				); 
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_def_answers` (
+  				`id` int(11) NOT NULL auto_increment,
+  				`survey_id` int(11) NOT NULL default '0',
+  				`quest_id` int(11) NOT NULL default '0',
+  				`answer` int(11) NOT NULL default '0',
+  				`ans_field` int(11) NOT NULL default '0',
+  				 PRIMARY KEY  (`id`)
+				);
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_authors` ( 
+				`id` int(11) NOT NULL auto_increment, 
+				`user_id` int(11) NOT NULL, 
+				PRIMARY KEY (`id`)
+				);
+			</query>
+			<query>
+				CREATE TABLE IF NOT EXISTS `#__survey_force_quest_show` (
+				`id` int(11) NOT NULL auto_increment,
+				`quest_id` int(11) NOT NULL default '0',
+				`survey_id` int(11) NOT NULL default '0',
+				`quest_id_a` int(11) NOT NULL default '0',
+				`answer` int(11) NOT NULL default '0',
+				`ans_field` int(11) NOT NULL default '0',
+				PRIMARY KEY  (`id`),
+				KEY `quest_id` (`quest_id`)
+				) AUTO_INCREMENT=1
+			</query>			
+		</queries>
+	</install>
+	<uninstall>
+		<queries>
+			<query>DELETE FROM `#__components` WHERE `option` LIKE '%surveyforce%'</query>
+		</queries>
+	</uninstall>
+	
+	<installfile>install.surveyforce.php</installfile>
+	<uninstallfile>uninstall.surveyforce.php</uninstallfile>
+	
+	<files>
+		<filename>jomsocial_rule.xml</filename>
+		<filename>bits_message.js</filename>
+		<filename>bits_mycommon.js</filename>
+		<filename>cont_img.gif</filename>
+		<filename>drag_img.gif</filename> 
+		<filename>survey.php</filename>
+		<filename>surveyforce.php</filename>
+		<filename>surveyforce.class.php</filename>
+		<filename>surveyforce.html.php</filename>
+		<filename>language/default.php</filename>
+		<filename>language/index.html</filename>
+		<filename>index.html</filename>
+		<filename>surveyforce.css</filename>
+		<filename>surveywindow.css</filename>
+		<filename>surveyforce.js</filename>
+		
+		<filename>edit.surveyforce.php</filename>
+		<filename>edit.surveyforce.html.php</filename>
+		<filename>generate.surveyforce.php</filename>
+		<filename>overlib_mini.js</filename> 
+		<filename>sf_main_js.js</filename> 
+		<filename>sf_session.class.php</filename>
+		 
+		<filename>includes/pngbehavior.htc</filename> 
+		<filename>includes/libchart/libchart.php</filename>
+		<filename>includes/libchart/images/PoweredBy.png</filename>
+		<filename>includes/libchart/fonts/DejaVuSansCondensed-Bold.ttf</filename>
+		<filename>includes/libchart/fonts/DejaVuSansCondensed.ttf</filename>
+		<filename>includes/libchart/classes/Axis.php</filename>
+		<filename>includes/libchart/classes/BarChart.php</filename>
+		<filename>includes/libchart/classes/Chart.php</filename>
+		<filename>includes/libchart/classes/Color.php</filename>
+		<filename>includes/libchart/classes/ColorHex.php</filename>
+		<filename>includes/libchart/classes/HorizontalChart.php</filename>
+		<filename>includes/libchart/classes/LineChart.php</filename>
+		<filename>includes/libchart/classes/MultiPieChart.php</filename>
+		<filename>includes/libchart/classes/MultiVerticalChart.php</filename>
+		<filename>includes/libchart/classes/PieChart.php</filename>
+		<filename>includes/libchart/classes/Point.php</filename>
+		<filename>includes/libchart/classes/Primitive.php</filename>
+		<filename>includes/libchart/classes/Text.php</filename>
+		<filename>includes/libchart/classes/VerticalChart.php</filename>
+		<filename>images/index.html</filename>
+		<filename>images/spacer.png</filename>
+		<filename>images/buttons/index.html</filename>
+		<filename>images/buttons/btn_accept2.png</filename>
+		<filename>images/buttons/btn_letter.png</filename>
+		<filename>images/buttons/btn_remaind.png</filename>
+		<filename>images/buttons/btn_apply.png</filename>
+		<filename>images/buttons/btn_back.png</filename>
+		<filename>images/buttons/btn_cancel.png</filename>
+		<filename>images/buttons/btn_cancel2.png</filename>
+		<filename>images/buttons/btn_cats.png</filename>
+		<filename>images/buttons/btn_certificates.png</filename>
+		<filename>images/buttons/btn_clear.png</filename>
+		<filename>images/buttons/btn_complete.png</filename>
+		<filename>images/buttons/btn_configure.png</filename>
+		<filename>images/buttons/btn_contents.png</filename>
+		<filename>images/buttons/btn_copy.png</filename>
+		<filename>images/buttons/btn_delete.png</filename>
+		<filename>images/buttons/btn_edit.png</filename>
+		<filename>images/buttons/btn_export.png</filename>
+		<filename>images/buttons/btn_forward.png</filename>
+		<filename>images/buttons/btn_move.png</filename>
+		<filename>images/buttons/btn_new.png</filename>
+		<filename>images/buttons/btn_new_s.png</filename>
+		<filename>images/buttons/btn_next.png</filename>
+		<filename>images/buttons/btn_preview.png</filename>
+		<filename>images/buttons/btn_print.png</filename>
+		<filename>images/buttons/btn_quizzes.png</filename>
+		<filename>images/buttons/btn_reports.png</filename>
+		<filename>images/buttons/btn_restart.png</filename>
+		<filename>images/buttons/btn_save.png</filename>
+		<filename>images/buttons/btn_send.png</filename>
+		<filename>images/buttons/btn_start.png</filename>
+		<filename>images/buttons/btn_upload.png</filename>
+		<filename>images/buttons/btn_demo.png</filename>
+		<filename>images/buttons/btn_results.png</filename>
+		<filename>images/buttons/spacer.png</filename>
+		<filename>images/headers/head_certificate.png</filename>
+		<filename>images/headers/head_courses.png</filename>
+		<filename>images/headers/head_quiz.png</filename>
+		<filename>images/headers/head_usergroup.png</filename>
+		<filename>images/headers/index.html</filename>
+		<filename>images/toolbar/index.html</filename>
+		<filename>images/toolbar/btn_accept.png</filename>
+		<filename>images/toolbar/btn_cancel.png</filename>
+		<filename>images/toolbar/btn_downarrow.png</filename>
+		<filename>images/toolbar/btn_downarrow_s.png</filename>
+		<filename>images/toolbar/btn_uparrow.png</filename>
+		<filename>images/toolbar/btn_uparrow_s.png</filename>
+		<filename>images/toolbar/tlb_courses.png</filename>
+		<filename>images/toolbar/tlb_docs.png</filename>
+		<filename>images/toolbar/tlb_quiz.png</filename>
+		<filename>images/toolbar/tlb_users.png</filename>
+		<filename>images/toolbar/tlb_help.png</filename>
+
+		<filename>images/window/index.html</filename>
+		<filename>images/window/bm.png</filename>
+		<filename>images/window/tm.png</filename>
+		<filename>images/window/tl.png</filename>
+		<filename>images/window/bg.png</filename>
+		<filename>images/window/br.png</filename>
+		<filename>images/window/close_1.png</filename>
+		<filename>images/window/close_2.png</filename>
+		<filename>images/window/lm.png</filename>
+		<filename>images/window/tr.png</filename>
+		<filename>images/window/rm.png</filename>
+		<filename>images/window/bl.png</filename>
+
+		<filename>images/publish_x.png</filename>		
+		<filename>images/icon-32-cancel.png</filename>
+		<filename>images/icon-32-forward.png</filename>
+		<filename>template.php</filename>
+
+		<filename>help/index.html</filename>
+		<filename>help/help.php</filename>
+		<filename>help/boilerplate.png</filename>
+		<filename>help/dragprop.png</filename>
+		<filename>help/dropdown.png</filename>
+		<filename>help/likert.png</filename>
+		<filename>help/pickmany.png</filename>
+		<filename>help/pickone.png</filename>
+		<filename>help/ranking.png</filename>
+		<filename>help/shortanswer.png</filename>
+
+		<folder>includes/pchart</folder>
+		<folder>views</folder>
+	</files>
+	
+	<administration>
+		<menu>SurveyForce</menu>
+			<submenu>
+				<menu link="option=com_surveyforce&amp;task=categories">CATEGORIES</menu>
+				<menu link="option=com_surveyforce&amp;task=surveys">SURVEYS</menu>
+				<menu link="option=com_surveyforce&amp;task=users">MANAGE USERS</menu>
+				<menu link="option=com_surveyforce&amp;task=authors">MANAGE AUTHORS</menu>
+				<menu link="option=com_surveyforce&amp;task=emails">MANAGE EMAILS</menu>
+				<menu link="option=com_surveyforce&amp;task=reports">REPORTS</menu>
+				<menu link="option=com_surveyforce&amp;task=config">CONFIGURATION</menu>
+				<menu link="option=com_surveyforce&amp;task=help">HELP</menu>
+				<menu link="option=com_surveyforce&amp;task=about">ABOUT SURVEYFORCE</menu>
+			</submenu>
+		<files>
+		
+			<filename>surveyforce.xml</filename>
+			
+			<filename>def.php</filename>
+			<filename>survey_back.jpg</filename>
+			<filename>toolbar.surveyforce.html.php</filename>
+			<filename>toolbar.surveyforce.php</filename>
+			<filename>jp_menu_pic.gif</filename>
+			<filename>install.surveyforce.php</filename>
+			<filename>installer.surveyforce.php</filename>
+			<filename>admin.surveyforce.html.php</filename>
+			<filename>admin.surveyforce.php</filename>
+			<filename>uninstall.surveyforce.php</filename>
+			<filename>index.html</filename>
+			<filename>manual.php</filename>
+			<filename>manual_faq.php</filename>
+			<filename>changelog.php</filename>
+			<filename>includes/draw_grid.php</filename>
+			<filename>includes/index.html</filename>
+			<filename>includes/example_users.csv</filename>
+			<filename>DejaVuSansCondensed-Bold.ttf</filename>
+			<filename>DejaVuSansCondensed.ttf</filename>
+
+			<filename>images/rate_us.png</filename>
+			<filename>images/bottom_menu_bg.jpg</filename>
+	 		<filename>images/EF_logo.jpg</filename>
+			<filename>images/top_menu_bg.jpg</filename>
+	 		<filename>images/j_arrow.png</filename>
+	 		<filename>images/j_arrow_down.png</filename>
+	 		<filename>js/mootools.js</filename>
+			<filename>js/jquery.pack.js</filename>
+	 		<filename>Snoopy.class.php</filename>
+			
+			<filename>tcpdf/index.html</filename>
+			<filename>tcpdf/html_entity_decode_php4.php</filename>
+			<filename>tcpdf/sf_pdf.php</filename>
+			<filename>tcpdf/tcpdf.php</filename>
+			<filename>tcpdf/unicode_data.php</filename>
+			
+			<filename>tcpdf/images/index.html</filename>
+			<filename>tcpdf/images/_blank.png</filename>
+			
+			<filename>tcpdf/fonts/index.html</filename>
+			<filename>tcpdf/fonts/freesans.php</filename>
+			<filename>tcpdf/fonts/freesansb.php</filename>
+			<filename>tcpdf/fonts/freesansbi.php</filename>
+			<filename>tcpdf/fonts/freesansi.php</filename>
+			<filename>tcpdf/fonts/freesans.z</filename>
+			<filename>tcpdf/fonts/freesans.ctg.z</filename>
+			<filename>tcpdf/fonts/freesansbold.z</filename>
+			<filename>tcpdf/fonts/freesansbold.ctg.z</filename>
+			<filename>tcpdf/fonts/freesansboldoblique.z</filename>
+			<filename>tcpdf/fonts/freesansboldoblique.ctg.z</filename>
+			<filename>tcpdf/fonts/freesansoblique.z</filename>
+			<filename>tcpdf/fonts/freesansoblique.ctg.z</filename>
+			
+			<filename>tcpdf/config/index.html</filename>
+			<filename>tcpdf/config/tcpdf_config.php</filename>
+			
+			<filename>tcpdf/config/lang/index.html</filename>
+			<filename>tcpdf/config/lang/eng.php</filename>
+			
+			<filename>tcpdf/cache/index.html</filename>
+			
+			<filename>template/surveyforce_standart/images/index.html</filename>			
+			<filename>template/surveyforce_standart/index.html</filename>
+			<filename>template/surveyforce_standart/surveyforce.css</filename>
+			<filename>template/surveyforce_standart/template.php</filename>
+			<filename>template/surveyforce_standart/template.xml</filename>
+			
+			<filename>template/surveyforce_new/images/no.gif</filename>	
+			<filename>template/surveyforce_new/images/yes.gif</filename>	
+			<filename>template/surveyforce_new/images/finish.png</filename>	
+			<filename>template/surveyforce_new/images/start.png</filename>	
+			<filename>template/surveyforce_new/images/next.png</filename>	
+			<filename>template/surveyforce_new/images/prev.png</filename>			
+			<filename>template/surveyforce_new/images/index.html</filename>			
+			<filename>template/surveyforce_new/index.html</filename>
+			<filename>template/surveyforce_new/surveyforce.css</filename>
+			<filename>template/surveyforce_new/template.php</filename>
+			<filename>template/surveyforce_new/template.xml</filename>
+			
+			<filename>component.legacy.php</filename>			
+			<filename>component.lib.php</filename>
+
+			<filename>joomplace.txt</filename>
+		</files>
+		<languages>
+			<language tag="en-GB">language/en-GB.com_surveyforce.ini</language>
+			<language tag="en-GB">language/en-GB.com_surveyforce.menu.ini</language>
+			<language tag="ru-RU">language/ru-RU.com_surveyforce.ini</language>
+			<language tag="ru-RU">language/ru-RU.com_surveyforce.menu.ini</language>
+		</languages>
+	</administration>
+
+	<languages>
+		<language tag="en-GB">en-GB.com_surveyforce.ini</language>
+		<language tag="pt-BR">pt-BR.com_surveyforce.ini</language>
+		<language tag="nl-NL">nl-NL.com_surveyforce.ini</language>
+	</languages>
+</install>

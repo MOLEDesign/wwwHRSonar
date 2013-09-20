@@ -1,0 +1,41 @@
+/**
+ * @version		$Id$
+ * @Project		ccQuery - Joomla! Database Explorer Extension/Component
+ * @author 		Warrier, Thomas Varghese 
+ * @package		ccQuery
+ * @copyright	Copyright (C) 2008-2009 codeclassic.org. All rights reserved.
+ * @license 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2
+*/
+
+.generaldesc			{ font-family: arial; font-size: 12px;color: gray; }
+.icon-48-ccquery		{ background-image: url(images/48-codeclassic.png); }
+.ccgridrownumheader		{ width:30px; }
+.ccgridrownum			{ text-align:center; }
+.ccgridheader			{ width:25%; }
+.ccnodatagound			{ background-color: #FAFAFA; border-bottom:solid 1px silver; text-align:center; color:orange; font-weight: bold;}
+
+.cccontainer			{ width:100%; }
+.cctree-panel			{ float:left; width:28%; overflow: auto; margin-right:10px; min-height:200px; border-right:solid 1px silver; }
+.cccontent-panel		{ float:left; width:70%; }
+.ccheading				{ color:black; font-family: Arial; font-size: 18px; }
+.ccbrowse-result-panel	{ overflow-y: hidden ! important; overflow-x: auto ! important; width:100%; height:100%; padding-bottom:20px; }
+.ccquery-panel-table	{ table-layout:fixed; width:100%; border:solid 0px white; }
+.ccsubheading			{ color:darkblue; font-weight:bold; }
+.ccpowered-by			{ text-align:center; margin:auto; margin-top:20px; float:left; width: 100%; font-family: Arial, Verdana; font-size: 12px; color: orange; }
+.cctextarea				{ width:98%; border: solid 1px silver; font-family:Arial; font-size:12px; }
+.cctextfield			{ width: 98%; border: solid 1px silver; font-family:Arial; font-size:12px; }
+.cctextfieldint			{ width: 20%; border: solid 1px silver; font-family:Arial; font-size:12px; }
+.cctextfieldtime		{ width: 30%; border: solid 1px silver; font-family:Arial; font-size:12px;}
+
+.treeview, .treeview ul { padding: 0; margin: 0; list-style: none;}
+.treeview ul 			{ background-color: white; margin-top: 4px;	margin-left:-100px;}
+.treeview li 			{ margin: 0; padding: 3px 0pt 3px 16px; }
+.filetree span.folder 	{ padding: 1px 0 1px 20px; display: block; background: url(images/table.png) 0 0 no-repeat; cursor: pointer; }
+.filetree span.folderselected { padding: 1px 0 1px 20px; display: block; background: url(images/table.png) 0 0 no-repeat; font-weight:bold; color:orange; }
+.rootnode 				{ margin-left:0px; padding: 1px 0 1px 20px; display: block; background: url(images/database.png) 0 0 no-repeat; list-style: none; cursor: pointer; }
+
+a.ovalbuttongray       {background: transparent url('images/oval-gray-left.gif') no-repeat top left; display: block; float: right; font: normal 13px Tahoma; line-height: 16px; height: 24px; padding-left: 11px; text-decoration: none;  padding-right: 5px;}
+a:link.ovalbuttongray, a:visited.ovalbuttongray, a:active.ovalbuttongray { color: #494949; }
+a.ovalbuttongray span  { background: transparent url('images/oval-gray-right.gif') no-repeat top right; display: block; padding: 4px 11px 4px 0; }
+a.ovalbuttongray:hover { background-position: bottom left; text-decoration: none;}
+a.ovalbuttongray:hover span{ background-position: bottom right; color: black; text-decoration: none;}

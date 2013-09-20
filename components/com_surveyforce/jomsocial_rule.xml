@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?><jomsocial><license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license><component>com_surveyforce</component><rules>
+
+
+
+	<rule>
+
+		<name>Completed survey ID=5</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey5</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=6</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey6</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=7</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey7</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=8</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey8</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=1</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey1</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=9</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey9</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=10</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey10</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=11</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey11</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=12</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey12</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=13</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey13</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=14</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey14</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=15</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey15</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=16</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey16</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=17</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey17</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=18</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey18</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=19</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey19</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=20</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey20</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=21</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey21</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=22</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey22</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=23</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey23</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+
+
+	<rule>
+
+		<name>Completed survey ID=24</name>
+
+		<description>Give points when registered user successfully completes survey.</description>
+
+		<action_string>completed.survey24</action_string>
+
+		<publish>COM_SF_FALSE</publish>
+
+		<points>0</points>
+
+		<access_level>1</access_level>
+
+	</rule>
+
+
+</rules></jomsocial>
