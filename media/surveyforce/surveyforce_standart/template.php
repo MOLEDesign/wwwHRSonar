@@ -82,6 +82,7 @@ EOFTMPL;
 In this function a javascript function is placed that creates survey elements - answers for questions, importance scale, buttons, etc.
 Be careful editing it.
 
+
 **************************************************************************************************************************************/
 	function SF_GetElements($sf_config) {
 		global $sf_lang;
@@ -100,8 +101,8 @@ Be careful editing it.
 			questions[n].kol_main_elems = mcount;
 			questions[n].main_ids_array = new Array(mcount);
 			var j;
-			if(questions[n].cur_quest_id != '200') {
-				if(questions[n].cur_quest_id != '292' && questions[n].cur_quest_id != '1128' && questions[n].cur_quest_id != '2134' && questions[n].cur_quest_id != '2817' && questions[n].cur_quest_id != '3047' && questions[n].cur_quest_id != '3276' && questions[n].cur_quest_id != '2363' && questions[n].cur_quest_id != '3506' && questions[n].cur_quest_id != '3735' && questions[n].cur_quest_id != '2588' && questions[n].cur_quest_id != '3961' && questions[n].cur_quest_id != '4186'){
+			if(questions[n].cur_quest_id != '200' && questions[n].cur_quest_id != '4578') {
+				if(questions[n].cur_quest_id != '292' && questions[n].cur_quest_id != '1128' && questions[n].cur_quest_id != '2134' && questions[n].cur_quest_id != '2817' && questions[n].cur_quest_id != '3047' && questions[n].cur_quest_id != '3276' && questions[n].cur_quest_id != '2363' && questions[n].cur_quest_id != '3506' && questions[n].cur_quest_id != '3735' && questions[n].cur_quest_id != '2588' && questions[n].cur_quest_id != '3961' && questions[n].cur_quest_id != '4186' && questions[n].cur_quest_id != '5150' && questions[n].cur_quest_id != '4683'){
 
 					for (j = 0; j < mcount; j++) {
 						questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);
