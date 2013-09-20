@@ -64,7 +64,7 @@ class surveyforce_template_class {
 EOF_RES;
 		return $return_str;
 	}
-	
+
 	function SF_SurveyBody() {
 		$return_str = <<<EOFTMPL
 			<div align="left" style="padding-left:10px;text-align:left;">{QUESTION_TEXT}</div>
@@ -75,8 +75,8 @@ EOFTMPL;
 		$return_str = str_replace("\n", '', $return_str);
 		$return_str = str_replace("\r", '', $return_str);
 		return $return_str;
-	}	
-	
+	}
+
 /************************************************************************************************************************************
 
 In this function a javascript function is placed that creates survey elements - answers for questions, importance scale, buttons, etc.
@@ -90,43 +90,38 @@ Be careful editing it.
 		function getLikertScale(n) {
 			var data = questions[n].response;
 			//question option count
-			var mcount = SF_getElement(data, 'main_fields_count', 0);	
+			var mcount = SF_getElement(data, 'main_fields_count', 0);
 			//question scale count
 			var scount = SF_getElement(data, 'scale_fields_count', 0);
 			//answers count
 			var ans_count = SF_getElement(data, 'ans_count', 0);
 			var factor_name = SF_getElement(data, 'factor_name', 0);
-			
+
 			questions[n].kol_main_elems = mcount;
 			questions[n].main_ids_array = new Array(mcount);
-			var j;		 			
+			var j;
 			if(questions[n].cur_quest_id != '200') {
+				if(questions[n].cur_quest_id != '292' && questions[n].cur_quest_id != '1128' && questions[n].cur_quest_id != '2134' && questions[n].cur_quest_id != '2817' && questions[n].cur_quest_id != '3047' && questions[n].cur_quest_id != '3276' && questions[n].cur_quest_id != '2363' && questions[n].cur_quest_id != '3506' && questions[n].cur_quest_id != '3735' && questions[n].cur_quest_id != '2588' && questions[n].cur_quest_id != '3961' && questions[n].cur_quest_id != '4186'){
 
-                // Alter this list by adding entries at the end to make radio button tables appear as checkboxes. The number is the UNIQUE Id of the question, this can be obtained
-                // from the database or URL, do NOT use the ID from visible table in Joomla admin
-
-
-				if(questions[n].cur_quest_id != '292' && questions[n].cur_quest_id != '1128' && questions[n].cur_quest_id != '2134' && questions[n].cur_quest_id != '2817' && questions[n].cur_quest_id != '3047' && questions[n].cur_quest_id != '3276' && questions[n].cur_quest_id != '2363' && questions[n].cur_quest_id != '3506' && questions[n].cur_quest_id != '3735' && questions[n].cur_quest_id != '2588' && questions[n].cur_quest_id != '3961' && questions[n].cur_quest_id != '4186' && questions[n].cur_quest_id != '4683' && questions[n].cur_quest_id != '5045'){
-					
 					for (j = 0; j < mcount; j++) {
 						questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);
 					}
-					
+
 					var return_str = '<div align="left" class="likert_scale_div">'+
 									 '<form name="quest_form'+questions[n].cur_quest_id+'">'+
 									 '<br/>'+
 									 '<table id="quest_table" class="likert_scale_table" cellpadding="3" cellspacing="0">';
-				
+
 					return_str = return_str + '<tr><td class="ls_factor_name">'+factor_name+'</td>';
-					
+
 					//scale cells
 					for (j = 0; j < scount; j++) {
 						return_str = return_str + '<td class="ls_scale_field">'+SF_getElement(data, 'sfield_text', j)+'</td>';
 					}
 					return_str = return_str + '</tr>';
-					
+
 					var k = 1;
-					var i = 0;	
+					var i = 0;
 					var ii = 0;
 					var jj = 0;
 					var checked = '';
@@ -143,12 +138,12 @@ Be careful editing it.
 						}
 						for (j = 0; j < scount; j++) {
 							checked = '';
-							if (ans_count > 0) {						 
+							if (ans_count > 0) {
 								//if selected current scale
 								if (SF_getElement(data, 'ans_id', jj) == SF_getElement(data, 'sfield_id', j))
 									checked = " checked='checked' ";
 							}
-							return_str = return_str + 
+							return_str = return_str +
 										'<td class="ls_answer_cell" onclick="javascript: check_answer('+n+'); sf_getObj(\'quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', i)+'_'+j+'\').checked=\'checked\'">' +
 										'<input onchange="javascript: check_answer('+n+');" class="ls_radio" type="radio" name="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', i)+'" value="'+SF_getElement(data, 'sfield_id', j)+'" id="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', i)+'_'+j+'" '+checked+'>' +
 										'</td>';
@@ -157,26 +152,26 @@ Be careful editing it.
 						k = 3 - k;
 					}
 				}else{
-					
+
 					for (j = 0; j < mcount; j++) {
 						questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);
 					}
-					
+
 					var return_str = '<div align="left" class="likert_scale_div">'+
 									 '<form name="quest_form'+questions[n].cur_quest_id+'">'+
 									 '<br/>'+
 									 '<table id="quest_table" class="likert_scale_table" cellpadding="3" cellspacing="0">';
-				
+
 					return_str = return_str + '<tr><td class="ls_factor_name">'+factor_name+'</td>';
-					
+
 					//scale cells
 					for (j = 0; j < scount; j++) {
 						return_str = return_str + '<td class="ls_scale_field">'+SF_getElement(data, 'sfield_text', j)+'</td>';
 					}
 					return_str = return_str + '</tr>';
-					
+
 					var k = 1;
-					var i = 0;	
+					var i = 0;
 					var ii = 0;
 					var jj = 0;
 					var checked = '';
@@ -193,12 +188,12 @@ Be careful editing it.
 						}
 						for (j = 0; j < scount; j++) {
 							checked = '';
-							if (ans_count > 0) {						 
+							if (ans_count > 0) {
 								//if selected current scale
 								if (SF_getElement(data, 'ans_id', jj) == SF_getElement(data, 'sfield_id', j))
 									checked = " checked='checked' ";
 							}
-							return_str = return_str + 
+							return_str = return_str +
 										'<td class="ls_answer_cell" onclick="javascript: check_answer('+n+'); sf_getObj(\'quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', i)+'_'+j+'\').checked=\'checked\'">' +
 										'<input onchange="javascript: check_answer('+n+');" class="ls_radio" type="checkbox" name="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', i)+'" value="'+SF_getElement(data, 'sfield_id', j)+'" id="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', i)+'_'+j+'" '+checked+'>' +
 										'</td>';
@@ -207,72 +202,72 @@ Be careful editing it.
 						k = 3 - k;
 					}
 
-				}								
-			} else {					
-				
-
-				for (j = 0; j < mcount; j++) {	
-					questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);	
-				}	
-					
-				var return_str = '<div align="left" class="likert_scale_div">'+	
-								 '<form name="quest_form'+questions[n].cur_quest_id+'">'+	
-								 '<br/>'+	
-								 '<table id="quest_table" class="likert_scale_table" cellpadding="3" cellspacing="0">';	
-				
-				return_str = return_str + '<tr><td class="ls_factor_name">'+factor_name+'</td>';	
-					
-				//scale cells	
-				for (j = 0; j < mcount; j++) {	
-					return_str = return_str + '<td class="ls_scale_field">'+SF_getElement(data, 'mfield_text', j)+'</td>';	
-				}	
-				return_str = return_str + '</tr>';	
-					
-				var k = 1;	
-				var i = 0;		
-				var ii = 0;	
-				var jj = 0;	
-				var checked = '';	
-				//question option rows	
-				for (i = 0; i < scount; i++) {	
-					//question option text	
-					return_str = return_str + '<tr class="sectiontableentry'+k+'"><td class="ls_quest_field" ><div id="qoption_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'sfield_id', i)+'">' + SF_getElement(data, 'sfield_text', i) + '</div></td>';	
-					//get row number for answers for this otpion	
-						
-					for (j = 0; j < mcount; j++) {
-						if (ans_count > 0) {	
-							for(ii = 0; ii < ans_count; ii++) {	
-								if (SF_getElement(data, 'a_quest_id', ii) == SF_getElement(data, 'mfield_id', j))	
-									jj = ii;	
-							}	
-						}	
-						checked = '';	
-						if (ans_count > 0) {						 	
-							//if selected current scale	
-							if (SF_getElement(data, 'ans_id', jj) == SF_getElement(data, 'sfield_id', i))	
-								checked = " checked='checked' ";	
-						}	
-						return_str = return_str + 	
-									'<td class="ls_answer_cell" onclick="javascript: check_answer('+n+'); sf_getObj(\'quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', j)+'_'+i+'\').checked=\'checked\'">' +	
-									'<input onchange="javascript: check_answer('+n+');" class="ls_radio" type="radio" name="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', j)+'" value="'+SF_getElement(data, 'sfield_id', i)+'" id="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', j)+'_'+i+'" '+checked+'>' +	
-									'</td>';	
-					}	
-					return_str = return_str + '</tr>';	
-					k = 3 - k;	
 				}
-			}			
+			} else {
+
+
+				for (j = 0; j < mcount; j++) {
+					questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);
+				}
+
+				var return_str = '<div align="left" class="likert_scale_div">'+
+								 '<form name="quest_form'+questions[n].cur_quest_id+'">'+
+								 '<br/>'+
+								 '<table id="quest_table" class="likert_scale_table" cellpadding="3" cellspacing="0">';
+
+				return_str = return_str + '<tr><td class="ls_factor_name">'+factor_name+'</td>';
+
+				//scale cells
+				for (j = 0; j < mcount; j++) {
+					return_str = return_str + '<td class="ls_scale_field">'+SF_getElement(data, 'mfield_text', j)+'</td>';
+				}
+				return_str = return_str + '</tr>';
+
+				var k = 1;
+				var i = 0;
+				var ii = 0;
+				var jj = 0;
+				var checked = '';
+				//question option rows
+				for (i = 0; i < scount; i++) {
+					//question option text
+					return_str = return_str + '<tr class="sectiontableentry'+k+'"><td class="ls_quest_field" ><div id="qoption_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'sfield_id', i)+'">' + SF_getElement(data, 'sfield_text', i) + '</div></td>';
+					//get row number for answers for this otpion
+
+					for (j = 0; j < mcount; j++) {
+						if (ans_count > 0) {
+							for(ii = 0; ii < ans_count; ii++) {
+								if (SF_getElement(data, 'a_quest_id', ii) == SF_getElement(data, 'mfield_id', j))
+									jj = ii;
+							}
+						}
+						checked = '';
+						if (ans_count > 0) {
+							//if selected current scale
+							if (SF_getElement(data, 'ans_id', jj) == SF_getElement(data, 'sfield_id', i))
+								checked = " checked='checked' ";
+						}
+						return_str = return_str +
+									'<td class="ls_answer_cell" onclick="javascript: check_answer('+n+'); sf_getObj(\'quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', j)+'_'+i+'\').checked=\'checked\'">' +
+									'<input onchange="javascript: check_answer('+n+');" class="ls_radio" type="radio" name="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', j)+'" value="'+SF_getElement(data, 'sfield_id', i)+'" id="quest_radio_'+questions[n].cur_quest_id+'_'+SF_getElement(data, 'mfield_id', j)+'_'+i+'" '+checked+'>' +
+									'</td>';
+					}
+					return_str = return_str + '</tr>';
+					k = 3 - k;
+				}
+			}
 			return_str = return_str + '</table></form></div>';
 			return return_str;
 		}
-			
+
 			function getPickOne(n) {
 				var data = questions[n].response;
 				var acount = SF_getElement(data, 'alt_fields_count', 0);
 				var mcount = SF_getElement(data, 'main_fields_count', 0);
 				var ans_count = SF_getElement(data, 'ans_count', 0);
-				var quest_style = SF_getElement(data, 'sf_qstyle', 0);	
+				var quest_style = SF_getElement(data, 'sf_qstyle', 0);
 				var selected = '';
-				
+
 				//if dropdown list style
 				if (quest_style == 1) {
 					if (acount > 0) {
@@ -282,21 +277,21 @@ Be careful editing it.
 									 '<div class="pick_one_div">'+
 									 '<form name="quest_form'+questions[n].cur_quest_id+'">'+
 									 '<select onchange="javascript: check_answer('+n+');" class="po_select" name="quest_select_po_'+questions[n].cur_quest_id+'" id="quest_select_po_'+questions[n].cur_quest_id+'">'+
-									 '<option value="0" '+selected+'><?php echo $sf_lang['SF_SELECT_ANS']?></option>';				
+									 '<option value="0" '+selected+'><?php echo $sf_lang['SF_SELECT_ANS']?></option>';
 				} else {
 					//if rodiobuttons style
 					var return_str = '<div align="left" class="pick_one_div">'+
 									 '<form name="quest_form'+questions[n].cur_quest_id+'">'+
 									 '<br/>'+
-									 '<table id="quest_table" class="pick_one_table" >';		
+									 '<table id="quest_table" class="pick_one_table" >';
 				}
-				
-				var i = 0;	
+
+				var i = 0;
 				for (i = 0; i < mcount; i++) {
 					selected = '';
 					if (ans_count > 0) {
 						if (SF_getElement(data, 'a_quest_id', 0) == SF_getElement(data, 'mfield_id', i)) {
-							if (quest_style == 1) 
+							if (quest_style == 1)
 								selected = " selected='selected' ";
 							else
 								selected = " checked='checked' ";
@@ -308,7 +303,7 @@ Be careful editing it.
 												  '</option>';
 					}
 					else {
-						return_str = return_str + 
+						return_str = return_str +
 									'<tr>'+
 									'<td class="po_answer_cell">'+
 										'<input onclick="javascript: check_answer('+n+');" onchange="javascript: check_answer('+n+');" class="po_radio" type="radio" name="quest_radio'+questions[n].cur_quest_id+'" id="quest_radio'+questions[n].cur_quest_id+i+'" value="'+SF_getElement(data, 'mfield_id', i)+'" '+selected+'>'+
@@ -325,7 +320,7 @@ Be careful editing it.
 					var other_val = '';
 					if (ans_count > 0) {
 						if (SF_getElement(data, 'a_quest_id', 0) == SF_getElement(data, 'afield_id', 0)) {
-							if (quest_style == 1) 
+							if (quest_style == 1)
 								selected = " selected='selected' ";
 							else
 								selected = " checked='checked' ";
@@ -336,7 +331,7 @@ Be careful editing it.
 						}
 					}
 					if (quest_style == 1) {
-						return_str = return_str + 
+						return_str = return_str +
 									'<option value="'+SF_getElement(data, 'afield_id', 0)+'" '+selected+' >'+SF_getElement(data, 'afield_text', 0)+'</option>'+
 									'</select>'+
 									'<br/>'+
@@ -355,9 +350,9 @@ Be careful editing it.
 									'<br/>'+
 									'</td>'+
 									'</tr>';
-					}				
+					}
 				}
-				
+
 				if (quest_style == 1) {
 					if (acount > 0)
 						return_str = return_str + '</form></div>';
@@ -369,11 +364,11 @@ Be careful editing it.
 				}
 				return return_str;
 			}
-			
+
 			function getPickMany (n) {
 				var data = questions[n].response;
 				//question option count
-				var mcount = SF_getElement(data, 'main_fields_count', 0);	
+				var mcount = SF_getElement(data, 'main_fields_count', 0);
 				var acount = SF_getElement(data, 'alt_fields_count', 0);
 				var ans_count = SF_getElement(data, 'ans_count', 0);
 				var return_str = '<div align="left" class="pick_many_div">'+
@@ -402,7 +397,7 @@ Be careful editing it.
 								 '</td>'+
 								 '</tr>';
 				}
-				
+
 				if (acount > 0) {
 					selected = '';
 					var other_val = '';
@@ -430,13 +425,13 @@ Be careful editing it.
 				return_str = return_str + '</table></form></div>';
 				return return_str;
 			}
-			
+
 			function getShortAnswer(n){
-				var data = questions[n].response;	
+				var data = questions[n].response;
 				var ans_count = SF_getElement(data, 'ans_count', 0);
 				var quest_inp_count = SF_getElement(data, 'quest_inp_count', 0);
-				
-				var ans_text = '';	
+
+				var ans_text = '';
 				var return_str = '';
 				var i = 0;
 				//if use one huge text area
@@ -444,7 +439,7 @@ Be careful editing it.
 					if (ans_count > 0 ) {
 						ans_text = SF_getElement(data, 'ans_txt', 0);
 					}
-					return_str = return_str + 
+					return_str = return_str +
 								'<div align="left" class="short_ans_div">'+
 								'<br/>'+
 								'<textarea id="inp_short'+questions[n].cur_quest_id+'" class="short_ans_textarea" rows="5" >'+
@@ -454,7 +449,7 @@ Be careful editing it.
 				} else {
 				//if use some small input boxes and textarea's in question text
 					var tmp_str = '';
-			
+
 					var x_pos = -1;
 					var y_pos = -1;
 					for(i=0; i < quest_inp_count; i++) {
@@ -462,10 +457,10 @@ Be careful editing it.
 						if (ans_count > 0 ) {
 							ans_text = SF_getElement(data, 'ans_txt', i);
 						}
-						
+
 						x_pos = questions[n].cur_quest_text.indexOf('{x}');
 						y_pos = questions[n].cur_quest_text.indexOf('{y}');
-						
+
 						if ( ( x_pos < y_pos || y_pos == -1 ) && x_pos != -1) {
 							tmp_str = '<input class="sa_input_text" type="text" id="short_ans_'+questions[n].cur_quest_id+'_'+i+'" name="short_ans_'+questions[n].cur_quest_id+'_'+i+'" value="'+ans_text+'" />';
 							questions[n].cur_quest_text = questions[n].cur_quest_text.replace(/\{x\}/, tmp_str);
@@ -476,14 +471,14 @@ Be careful editing it.
 							questions[n].cur_quest_text = questions[n].cur_quest_text.replace(/\{y\}/, tmp_str);
 						}
 					}
-					
+
 				}
-				
+
 				return return_str;
 			}
-			
+
 			function getDropDown(n){
-				var data = questions[n].response;	
+				var data = questions[n].response;
 				var acount = SF_getElement(data, 'alt_fields_count', 0);
 				var mcount = SF_getElement(data, 'main_fields_count', 0);
 				var ans_count = SF_getElement(data, 'ans_count', 0);
@@ -528,16 +523,16 @@ Be careful editing it.
 								'</tr>';
 				}
 				return_str = return_str + '</table></form></div>';
-				
+
 				return return_str;
 			}
-			
+
 			function getDragDrop(n){
-				var data = questions[n].response;	
+				var data = questions[n].response;
 				var acount = SF_getElement(data, 'alt_fields_count', 0);
 				var mcount = SF_getElement(data, 'main_fields_count', 0);
 				var ans_count = SF_getElement(data, 'ans_count', 0);
-				
+
 				questions[n].kol_drag_elems = acount; // !!!
 				questions[n].drag_array = new Array(questions[n].kol_drag_elems);
 				questions[n].coord_left = new Array(questions[n].kol_drag_elems);
@@ -567,12 +562,12 @@ Be careful editing it.
 									'</tr>';
 				}
 				return_str = return_str + '</table></div>';
-				
+
 				return return_str;
 			}
-			
+
 			function getRanking(n){
-				var data = questions[n].response;	
+				var data = questions[n].response;
 				var acount = SF_getElement(data, 'alt_fields_count', 0);
 				var mcount = SF_getElement(data, 'main_fields_count', 0);
 				var ans_count = SF_getElement(data, 'ans_count', 0);
@@ -592,7 +587,7 @@ Be careful editing it.
 							if (SF_getElement(data, 'a_quest_id', ii) == mfield_id)
 								jj = ii;
 						}
-				
+
 					}
 					for (j = 0; j < acount; j++) {
 						selected = '';
@@ -611,20 +606,20 @@ Be careful editing it.
 				var mfield_type = 0;
 				var other_inp = '';
 				var other_val = '';
-				for (i = 0; i < mcount; i++) {				
+				for (i = 0; i < mcount; i++) {
 					mfield_type = SF_getElement(data, 'mfield_is_true', i);
-					if (mfield_type == 2) {				
+					if (mfield_type == 2) {
 						other_val = SF_getElement(data, 'ans_txt', 0);
 						if (other_val == '!!!---!!!') {
 							other_val = '';
 						}
-						other_inp = '<input class="r_other" type="text" id="other_op_'+questions[n].cur_quest_id+'" name="other_op_'+questions[n].cur_quest_id+'" value="'+other_val+'"/>';					
+						other_inp = '<input class="r_other" type="text" id="other_op_'+questions[n].cur_quest_id+'" name="other_op_'+questions[n].cur_quest_id+'" value="'+other_val+'"/>';
 					}
 					else {
 						other_inp = '';
 						other_val = '';
 					}
-					
+
 					return_str = return_str + '<tr>'+
 									'<td class="r_left_cell">'+
 										SF_getElement(data, 'mfield_text', i)+" "+other_inp+
@@ -639,9 +634,9 @@ Be careful editing it.
 				return_str = return_str + '</table></form></div>';
 				return return_str;
 			}
-			
+
 			function getImpScale(n) {
-				var data = questions[n].response;	
+				var data = questions[n].response;
 				cur_impscale_ex = 0;
 				var iscount = SF_getElement(data, 'impscale_fields_count', 0);
 				var return_str = '';
@@ -660,7 +655,7 @@ Be careful editing it.
 					for (j = 0; j < iscount; j++) {
 						return_str = return_str + '<td class="i_text_cell" onclick="javascript: sf_getObj(\'iscale_radio'+questions[n].cur_quest_id+'_'+j+'\').checked=\'checked\';">' +
 												 '<label for="iscale_radio'+questions[n].cur_quest_id+'_'+j+'" style="cursor: pointer;">' +
-													SF_getElement(data, 'isfield_text', j) + 
+													SF_getElement(data, 'isfield_text', j) +
 												'</label>' +
 												'</td>';
 					}
@@ -680,31 +675,31 @@ Be careful editing it.
 										'</td>';
 					}
 					return_str = return_str + "<\/tr>";
-					return_str = return_str + "<\/table><\/form><\/div>";		
+					return_str = return_str + "<\/table><\/form><\/div>";
 				}
 				return return_str;
 			}
-			
-			function getQuestionTemplate() {	
-				var return_str = '<?php echo surveyforce_template_class::SF_SurveyBody();?>';					
+
+			function getQuestionTemplate() {
+				var return_str = '<?php echo surveyforce_template_class::SF_SurveyBody();?>';
 				return return_str;
 			}
-			
+
 			function getQuestionDelimeter() {
 				return '<br/><hr/><br/>';
 			}
-						
+
 			function getButton(type, label, onclick) {
 				/* type = prev, next, finish
 				*/
-				var return_str = '<input type="button" id="sf_'+type+'_button" class="button" value="'+label+'" onclick="'+onclick+'" />';				
+				var return_str = '<input type="button" id="sf_'+type+'_button" class="button" value="'+label+'" onclick="'+onclick+'" />';
 				return return_str;
 			}
 		//--><!]]>
 		</script>
 		<?php
 	}
-	
+
 	function SF_GetStartButton() {
 		global $sf_lang;
 		return '<input type="button" id="sf_start_button"  value="'.$sf_lang['SURVEY_START'].'" class="button" onclick="javascript: sf_StartSurveyOn()"/>';
