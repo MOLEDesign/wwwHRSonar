@@ -101,7 +101,7 @@ Be careful editing it.
 			questions[n].main_ids_array = new Array(mcount);
 			var j;		 			
 			if(questions[n].cur_quest_id != '200') {
-				if(questions[n].cur_quest_id != '292' && questions[n].cur_quest_id != '1128' && questions[n].cur_quest_id != '2134' && questions[n].cur_quest_id != '2817' && questions[n].cur_quest_id != '3047' && questions[n].cur_quest_id != '3276' && questions[n].cur_quest_id != '2363' && questions[n].cur_quest_id != '3506' && questions[n].cur_quest_id != '3735' && questions[n].cur_quest_id != '2588' && questions[n].cur_quest_id != '3961' && questions[n].cur_quest_id != '4186'){
+				if(questions[n].cur_quest_id != '292' && questions[n].cur_quest_id != '1128' && questions[n].cur_quest_id != '2134' && questions[n].cur_quest_id != '2817' && questions[n].cur_quest_id != '3047' && questions[n].cur_quest_id != '3276' && questions[n].cur_quest_id != '2363' && questions[n].cur_quest_id != '3506' && questions[n].cur_quest_id != '3735' && questions[n].cur_quest_id != '2588' && questions[n].cur_quest_id != '3961' && questions[n].cur_quest_id != '4186' && questions[n].cur_quest_id != '216'){
 					
 					for (j = 0; j < mcount; j++) {
 						questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);
