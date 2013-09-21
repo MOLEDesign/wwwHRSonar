@@ -114,6 +114,7 @@ Be careful editing it.
                 && questions[n].cur_quest_id != '3855'
                 && questions[n].cur_quest_id != '4081') {
 				if(questions[n].cur_quest_id != '292'
+                    && questions[n].cur_quest_id != '215'
                     && questions[n].cur_quest_id != '1128'
                     && questions[n].cur_quest_id != '2134'
                     && questions[n].cur_quest_id != '2817'
