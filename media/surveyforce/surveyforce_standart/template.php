@@ -101,8 +101,32 @@ Be careful editing it.
 			questions[n].kol_main_elems = mcount;
 			questions[n].main_ids_array = new Array(mcount);
 			var j;
-			if(questions[n].cur_quest_id != '200' && questions[n].cur_quest_id != '4578') {
-				if(questions[n].cur_quest_id != '292' && questions[n].cur_quest_id != '1128' && questions[n].cur_quest_id != '2134' && questions[n].cur_quest_id != '2817' && questions[n].cur_quest_id != '3047' && questions[n].cur_quest_id != '3276' && questions[n].cur_quest_id != '2363' && questions[n].cur_quest_id != '3506' && questions[n].cur_quest_id != '3735' && questions[n].cur_quest_id != '2588' && questions[n].cur_quest_id != '3961' && questions[n].cur_quest_id != '4186' && questions[n].cur_quest_id != '5150' && questions[n].cur_quest_id != '4683'){
+			if(questions[n].cur_quest_id != '200'
+                && questions[n].cur_quest_id != '1040'
+                && questions[n].cur_quest_id != '2029'
+                && questions[n].cur_quest_id != '2712'
+                && questions[n].cur_quest_id != '2914'
+                && questions[n].cur_quest_id != '3171'
+                && questions[n].cur_quest_id != '2258'
+                && questions[n].cur_quest_id != '3400'
+                && questions[n].cur_quest_id != '3630'
+                && questions[n].cur_quest_id != '2483'
+                && questions[n].cur_quest_id != '3855'
+                && questions[n].cur_quest_id != '4081') {
+				if(questions[n].cur_quest_id != '292'
+                    && questions[n].cur_quest_id != '1128'
+                    && questions[n].cur_quest_id != '2134'
+                    && questions[n].cur_quest_id != '2817'
+                    && questions[n].cur_quest_id != '3047'
+                    && questions[n].cur_quest_id != '3276'
+                    && questions[n].cur_quest_id != '2363'
+                    && questions[n].cur_quest_id != '3506'
+                    && questions[n].cur_quest_id != '3735'
+                    && questions[n].cur_quest_id != '2588'
+                    && questions[n].cur_quest_id != '3961'
+                    && questions[n].cur_quest_id != '4186'
+                    && questions[n].cur_quest_id != '5150'
+                    && questions[n].cur_quest_id != '4683'){
 
 					for (j = 0; j < mcount; j++) {
 						questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);
