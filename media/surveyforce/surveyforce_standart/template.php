@@ -67,7 +67,7 @@ EOF_RES;
 
 	function SF_SurveyBody() {
 		$return_str = <<<EOFTMPL
-			<div align="left" style="padding-left:10px;text-align:left;">{QUESTION_TEXT}</div>
+			<div align="left" style="padding-left:5px;text-align:left;">{QUESTION_TEXT}</div>
 			<div>{ANSWERS}</div>
 			{IMPORTANCE_SCALE}				
 EOFTMPL;
@@ -713,7 +713,7 @@ Be careful editing it.
 			}
 
 			function getQuestionDelimeter() {
-				return '<br/><hr/><br/>';
+				return '<br/><hr/>';
 			}
 
 			function getButton(type, label, onclick) {

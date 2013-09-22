@@ -14,7 +14,7 @@ defined( '_VALID_MOS' ) or die( 'Restricted access' );
 
 /***********************************************************************************
 
-It’s a default template file.
+Itï¿½s a default template file.
 It will be used only if templates in `media`  folder are deleted
 
 Normally you shouldn't edit it, instead, edit templates in `media` folder
@@ -29,15 +29,15 @@ class surveyforce_template_class {
 
 /***********************************************************************************************************************
 
-{SURVEY_NAME} – survey’s name will be placed there
+{SURVEY_NAME} ï¿½ surveyï¿½s name will be placed there
 {BACKGROUND_IMAGE} - text for background image will be placed there
 {PROGRESS_BAR} - progress bar will be placed there
 {ERROR_MESSAGE_TOP} - first (top) error message will be placed there
 {ERROR_MESSAGE_BOTTOM}- second (bottom) error massage will be placed there
-{SURVEY_BODY}- survey will be placed there -  survey’s start page (description), questions and answers, final page
+{SURVEY_BODY}- survey will be placed there -  surveyï¿½s start page (description), questions and answers, final page
 (in function `SF_SurveyBody` you can define a place for each item - question text(description), answers, importance scale)
 
-{START_BUTTON}{PREV_BUTTON}{NEXT_BUTTON}{FINISH_BUTTON} – survey’s control buttons will be placed there
+{START_BUTTON}{PREV_BUTTON}{NEXT_BUTTON}{FINISH_BUTTON} ï¿½ surveyï¿½s control buttons will be placed there
 
 ***********************************************************************************************************************/
 	function SF_MainLayout() {
@@ -76,7 +76,7 @@ EOF_RES;
 	
 	function SF_SurveyBody() {
 		$return_str = <<<EOFTMPL
-			<div align="left" style="padding-left:10px;text-align:left;">{QUESTION_TEXT}</div>
+			<div align="left" style="padding-left:5px;text-align:left;">{QUESTION_TEXT}</div>
 			<div>{ANSWERS}</div>
 			{IMPORTANCE_SCALE}				
 EOFTMPL;
