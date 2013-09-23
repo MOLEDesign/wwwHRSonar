@@ -113,7 +113,9 @@ Be careful editing it.
                 && questions[n].cur_quest_id != '2483'
                 && questions[n].cur_quest_id != '3855'
                 && questions[n].cur_quest_id != '4081'
-                && questions[n].cur_quest_id != '4578') {
+                && questions[n].cur_quest_id != '4578'
+                && questions[n].cur_quest_id != '5291'
+                && questions[n].cur_quest_id != '5521') {
 				if(questions[n].cur_quest_id != '292'
                     && questions[n].cur_quest_id != '215'
                     && questions[n].cur_quest_id != '1128'
@@ -128,7 +130,9 @@ Be careful editing it.
                     && questions[n].cur_quest_id != '3961'
                     && questions[n].cur_quest_id != '4186'
                     && questions[n].cur_quest_id != '5150'
-                    && questions[n].cur_quest_id != '4683'){
+                    && questions[n].cur_quest_id != '4683'
+                    && questions[n].cur_quest_id != '5397'
+                    && questions[n].cur_quest_id != '5626'){
 
 					for (j = 0; j < mcount; j++) {
 						questions[n].main_ids_array[j] = SF_getElement(data, 'mfield_id', j);
