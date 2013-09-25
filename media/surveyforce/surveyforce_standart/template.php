@@ -304,8 +304,7 @@ Be careful editing it.
 					if (acount > 0) {
 						selected = " selected='selected' ";
 					}
-					var return_str = '<br/>'+
-									 '<div class="pick_one_div">'+
+					var return_str = '<div class="pick_one_div">'+
 									 '<form name="quest_form'+questions[n].cur_quest_id+'">'+
 									 '<select onchange="javascript: check_answer('+n+');" class="po_select" name="quest_select_po_'+questions[n].cur_quest_id+'" id="quest_select_po_'+questions[n].cur_quest_id+'">'+
 									 '<option value="0" '+selected+'><?php echo $sf_lang['SF_SELECT_ANS']?></option>';
@@ -341,7 +340,6 @@ Be careful editing it.
 									'</td>'+
 									'<td class="po_quest_cell">'+
 										'<label for="quest_radio'+questions[n].cur_quest_id+i+'">'+SF_getElement(data, 'mfield_text', i)+'</label>'+
-										'<br/>'+
 									'</td>'+
 									'</tr>';
 					}
@@ -472,7 +470,6 @@ Be careful editing it.
 					}
 					return_str = return_str +
 								'<div align="left" class="short_ans_div">'+
-								'<br/>'+
 								'<textarea id="inp_short'+questions[n].cur_quest_id+'" class="short_ans_textarea" rows="5" >'+
 									ans_text+
 								'</textarea>'+
@@ -677,7 +674,6 @@ Be careful editing it.
 					var iscale_name = SF_getElement(data, 'impscale_name', 0);
 					return_str = '<div align="left" class="importance_div">'+
 								 '<form name="iscale_form'+questions[n].cur_quest_id+'">'+
-								 '<br/>'+
 								 '<br/>'+
 								 '<table class="importance_table" id="iscale_table" cellpadding="0" cellspacing="0">';
 					return_str = return_str + '<tr class="sectiontableentry2"><td class="i_quest" colspan="' + iscount + '" >&nbsp;&nbsp;'+iscale_name+'<\/td><\/tr>';
